@@ -1,7 +1,10 @@
 services:
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:latest
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
     container_name: cadvisor
+    command:
+      - --docker=unix:///var/run/docker.sock
+      - --disable_metrics=disk,diskIO
     ports:
       - "8080:8080"
     volumes:
